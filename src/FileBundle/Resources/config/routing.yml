@@ -1,0 +1,3 @@
+file_test:
+    path: test/file
+    defaults: { _controller: FileBundle:Test:test }

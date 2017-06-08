@@ -1,0 +1,10 @@
+services:
+    #manager
+    file.manager:
+        class: FileBundle\Core\FileManager
+
+    #Doctrine Listeners
+    file.subscriber.file_upload:
+        class: FileBundle\Events\EventSubscriber\FileUploadSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }

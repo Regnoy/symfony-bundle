@@ -1,0 +1,63 @@
+<?php
+
+namespace FileBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class File
+ * @package FileBundle\Entity
+ * @ORM\Table(name="file")
+ * @ORM\Entity
+ */
+class File {
+
+  /**
+   * @ORM\Column(type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+
+  /**
+   * @ORM\Column(type="integer", name="uid")
+   */
+  private $user;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $filename;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $url;
+
+  /**
+   * @ORM\Column(type="integer")
+   */
+  private $fileSize;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $fileMime;
+
+  /**
+   * @ORM\Column(type="smallint")
+   */
+  private $status;
+
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  private $created;
+
+
+  public function __construct() {
+    $this->created = new \DateTime();
+    $this->fileSize = 0;
+    $this->status = 0;
+  }
+
+}

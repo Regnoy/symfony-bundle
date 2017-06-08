@@ -1,0 +1,32 @@
+<?php
+
+
+namespace CoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class State
+ * @package CoreBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="state")
+ */
+class State {
+
+  /**
+   * @ORM\Column(type="string", unique=true)
+   * @ORM\Id
+   */
+  private $collection;
+
+  /**
+   * @ORM\Column(type="blob")
+   */
+  private $value;
+
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  private $expired;
+
+}

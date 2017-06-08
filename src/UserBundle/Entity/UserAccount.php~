@@ -1,0 +1,42 @@
+<?php
+
+namespace UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * Class User
+ * @package UserBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="user_account")
+ */
+class UserAccount {
+  /**
+   * @ORM\Column(type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+  
+  /**
+   * @ORM\OneToOne(targetEntity="User")
+   * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+   */
+  private $user;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $firstName;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $lastName;
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  private $birthday;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $gender;
+  
+}
