@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class State
  * @package CoreBundle\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="StateRepository")
  * @ORM\Table(name="state")
  */
 class State {
@@ -25,13 +25,14 @@ class State {
   private $value;
 
   /**
-   * @ORM\Column(type="datetime")
+   * @ORM\Column(type="string")
    */
   private $expired;
 
 
   public function __construct() {
-
+    $date = new \DateTime();
+    $this->expired = $date->getTimestamp() + (60*60*24);
   }
 
   /**
@@ -79,14 +80,14 @@ class State {
    */
   public function getValue()
   {
-    $stream = stream_get_contents($this->getValue());
+    $stream = stream_get_contents($this->value);
     return unserialize($stream);
   }
 
   /**
    * Set expired
    *
-   * @param \DateTime $expired
+   * @param String $expired
    *
    * @return State
    */
@@ -100,7 +101,7 @@ class State {
   /**
    * Get expired
    *
-   * @return \DateTime
+   * @return String
    */
   public function getExpired()
   {

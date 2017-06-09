@@ -5,6 +5,8 @@ namespace CoreBundle\Core;
 
 
 
+use Doctrine\ORM\EntityManager;
+
 class Core {
   
   private static $container;
