@@ -20,13 +20,25 @@ class DefaultController extends Controller
 
     $em = Core::em();
     $stateRepo = $em->getRepository(State::class);
+    $multiple = [
+      [
+        'key' => ['user', 1, 'token'],
+        'value' => 'asdasdasd',
+      ],
+      [
+        'key' => ['user', 3, 'token123'],
+        'value' => '2345345345345',
+      ]
+    ];
+    $stateRepo->setMultiple($multiple);
+    $stateRepo->setMultiple($multiple);
 
-    $key = ['user', 1, 'token'];
-    $key2 = ['user', 3, 'token123'];
-    $states = $stateRepo->getMultiple([$key, $key2]);
-    var_dump($states);
-    $states = $stateRepo->getMultiple([$key, $key2]);
-    var_dump($states);
+//    $key = ['user', 1, 'token'];
+//    $key2 = ['user', 3, 'token123'];
+//    $states = $stateRepo->getMultiple([$key, $key2]);
+//    var_dump($states);
+//    $states = $stateRepo->getMultiple([$key, $key2]);
+//    var_dump($states);
 //    $value = $stateRepo->get($key);
 //    $value2 = $stateRepo->get($key2);
 //

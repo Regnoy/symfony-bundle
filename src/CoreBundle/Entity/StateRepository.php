@@ -44,7 +44,36 @@ class StateRepository extends EntityRepository {
   }
 
   public function setMultiple( array $states){
+    // [0 => ['key'=>'asdasd', 'value'=>'asdasd', 'expired' =>'asda']]
+    $newState = [];
+    foreach ($states as $k => $state){
+      if((!isset($state['key']) || !isset($state['value'])) && !($state instanceof State))
+        continue;
 
+      $key = implode('.', $state['key']);
+      if(isset($this->_entity[$key])){
+        /** @var State $existState */
+        $existState = $this->_entity[$key];
+        $newState[$key] =$existState;
+        $existState->setValue($state['value']);
+        if(isset($state["expired"])){
+          $existState->setExpired($state["expired"]);
+        }
+        continue;
+      }
+      $stateInstance = new State();
+      $stateInstance->setCollection($key)->setValue($state['value']);
+      if(isset($state["expired"]) && !is_null($state["expired"])){
+        $stateInstance->setExpired($state["expired"]);
+      }
+      $newState[$key] = $stateInstance;
+    }
+    /** @var State $state */
+    foreach ($newState as $state){
+      $this->_em->merge($state);
+      $this->_entity[$state->getCollection()] = $state;
+    }
+    $this->_em->flush();
   }
 
   public function getMultiple( array $states){
