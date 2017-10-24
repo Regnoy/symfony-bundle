@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class User
  * @package UserBundle\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User implements \Serializable ,UserInterface {
@@ -71,14 +71,20 @@ class User implements \Serializable ,UserInterface {
     $this->updated = new \DateTime();
     $this->status = 1;
   }
-  
-  
-  public function serialize() {
-   return serialize([$this->id]);
+
+
+  public function serialize()
+  {
+    return serialize(array(
+      $this->id
+    ));
   }
-  public function unserialize($serialized) {
-    list($this->id) = $this->unserialize($serialized);
+
+  public function unserialize($serialized)
+  {
+    list($this->id) = unserialize($serialized);
   }
+
   public function getRoles() {
     return $this->roles->toArray();
   }
@@ -92,7 +98,7 @@ class User implements \Serializable ,UserInterface {
     return $this->username;
   }
   public function eraseCredentials() {
-    // TODO: Implement eraseCredentials() method.
+
   }
 
     /**

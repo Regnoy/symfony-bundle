@@ -23,10 +23,10 @@ security:
             http_basic: ~
             provider: main
             form_login:
-                login_path: /user/login
-                check_path: /login_check
+                login_path: /login
+                check_path: /login
             logout:
-                path: /user/logout
+                path: /logout
 
             # activate different ways to authenticate
 

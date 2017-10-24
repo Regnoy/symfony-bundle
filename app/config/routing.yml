@@ -4,3 +4,6 @@ app:
 
 file:
     resource: "@FileBundle/Resources/config/routing.yml"
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
