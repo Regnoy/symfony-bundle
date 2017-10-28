@@ -4,3 +4,7 @@ login:
 
 logout:
   path: /logout
+
+register:
+  path: /register
+  defaults: { _controller: UserBundle:Security:register }

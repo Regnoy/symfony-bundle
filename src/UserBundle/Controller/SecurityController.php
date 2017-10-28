@@ -5,6 +5,8 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Forms\Models\RegisterUserModel;
+use UserBundle\Forms\RegisterUserForm;
 
 
 class SecurityController extends Controller  {
@@ -21,5 +23,21 @@ class SecurityController extends Controller  {
       'last_username' => $lastUsername,
       'error'         => $error,
     ));
+  }
+  public function registerAction( Request $request ){
+    $registerModel = new RegisterUserModel();
+    $registerForm = $this->createForm(RegisterUserForm::class, $registerModel);
+    $registerForm->handleRequest($request);
+    if($registerForm->isSubmitted()){
+
+      $user = $registerModel->getUserHandler();
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($user);
+      $em->flush();
+      return $this->redirectToRoute('login');
+    }
+    return $this->render('@User/security/register.html.twig',[
+      'register_form' => $registerForm->createView()
+    ]);
   }
 }

@@ -18,7 +18,7 @@ class UserAccount {
   private $id;
   
   /**
-   * @ORM\OneToOne(targetEntity="User")
+   * @ORM\OneToOne(targetEntity="User", inversedBy="account")
    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
    */
   private $user;
@@ -37,10 +37,7 @@ class UserAccount {
   /**
    * @ORM\Column(type="string")
    */
-  private $gender;
-  
-  
-  private $entities;
+  private $region;
   
   /**
    * Get id
@@ -125,27 +122,27 @@ class UserAccount {
   }
   
   /**
-   * Set gender
+   * Set region
    *
-   * @param string $gender
+   * @param string $region
    *
    * @return UserAccount
    */
-  public function setGender($gender)
+  public function setRegion($region)
   {
-    $this->gender = $gender;
+    $this->region = $region;
     
     return $this;
   }
   
   /**
-   * Get gender
+   * Get region
    *
    * @return string
    */
-  public function getGender()
+  public function getRegion()
   {
-    return $this->gender;
+    return $this->region;
   }
   
   /**
@@ -170,13 +167,5 @@ class UserAccount {
   public function getUser()
   {
     return $this->user;
-  }
-  
-  
-  public function setEntities( $entity , $machine_name){
-    $this->entities[$machine_name] = $entity;
-  }
-  public function getEntities( $machine_name ){
-    return isset( $this->entities[$machine_name] ) ? $this->entities[$machine_name] : NULL;
   }
 }
