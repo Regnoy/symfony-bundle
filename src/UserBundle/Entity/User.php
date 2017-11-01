@@ -302,4 +302,13 @@ class User implements \Serializable ,UserInterface {
   {
     return $this->account;
   }
+
+  public function getFullname(){
+    $fullname = $this->getAccount()->getFirstName();
+    $lastName = $this->getAccount()->getLastName();
+    if($lastName){
+      $fullname = $fullname." ".$lastName;
+    }
+    return $fullname;
+  }
 }

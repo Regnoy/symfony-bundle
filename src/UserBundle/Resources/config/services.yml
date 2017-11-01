@@ -1,0 +1,4 @@
+services:
+  user.security.recover:
+    class: UserBundle\Extend\Security\RecoverPassword
+    arguments: ['@mailer', '@twig', '@doctrine.orm.entity_manager', '@router']

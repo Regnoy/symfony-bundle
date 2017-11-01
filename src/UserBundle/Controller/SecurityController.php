@@ -5,7 +5,9 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Forms\Models\RecoverUserModel;
 use UserBundle\Forms\Models\RegisterUserModel;
+use UserBundle\Forms\RecoverUserForm;
 use UserBundle\Forms\RegisterUserForm;
 
 
@@ -38,6 +40,26 @@ class SecurityController extends Controller  {
     }
     return $this->render('@User/security/register.html.twig',[
       'register_form' => $registerForm->createView()
+    ]);
+  }
+  public  function recoverAction($token, Request $request ){
+    if($token){
+      var_dump($token);
+    }
+    $recoverModel = new RecoverUserModel();
+    $recoverForm = $this->createForm(RecoverUserForm::class, $recoverModel);
+    $recoverForm->handleRequest($request);
+    if($recoverForm->isSubmitted()){
+      $email = $recoverModel->getEmail();
+      $user = $this->getDoctrine()->getRepository('UserBundle:User')->findOneByEmail($email);
+      if($user){
+        $this->get('user.security.recover')->send($user);
+      }
+      var_dump("message send");
+      //return $this->redirectToRoute('recover');
+    }
+    return $this->render('@User/security/recover.html.twig',[
+      'recover_form' => $recoverForm->createView()
     ]);
   }
 }

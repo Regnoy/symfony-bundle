@@ -8,3 +8,7 @@ logout:
 register:
   path: /register
   defaults: { _controller: UserBundle:Security:register }
+
+recover:
+  path: /recover/{token}
+  defaults: { _controller: UserBundle:Security:recover, token: null }

@@ -38,6 +38,11 @@ class UserAccount {
    * @ORM\Column(type="string")
    */
   private $region;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private $tokenRecover;
   
   /**
    * Get id
@@ -168,4 +173,28 @@ class UserAccount {
   {
     return $this->user;
   }
+
+    /**
+     * Set tokenRecover
+     *
+     * @param string $tokenRecover
+     *
+     * @return UserAccount
+     */
+    public function setTokenRecover($tokenRecover)
+    {
+        $this->tokenRecover = $tokenRecover;
+    
+        return $this;
+    }
+
+    /**
+     * Get tokenRecover
+     *
+     * @return string
+     */
+    public function getTokenRecover()
+    {
+        return $this->tokenRecover;
+    }
 }
