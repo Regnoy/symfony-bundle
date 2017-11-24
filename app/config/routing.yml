@@ -7,3 +7,6 @@ file:
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
+
+form:
+    resource: "@FormBundle/Resources/config/routing.yml"

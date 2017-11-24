@@ -18,8 +18,10 @@ class AppKernel extends Kernel
       new CoreBundle\CoreBundle(),
       new AppBundle\AppBundle(),
       new FileBundle\FileBundle(),
-      new UserBundle\UserBundle()
-    
+      new UserBundle\UserBundle(),
+      new FormBundle\FormBundle()
+
+
     ];
     
     if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -58,7 +58,7 @@ class User implements \Serializable ,UserInterface {
 
   /**
    * @var \Doctrine\Common\Collections\ArrayCollection
-   * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+   * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", cascade={"persist", "remove"})
    * @ORM\JoinTable(name="users_roles")
    */
   private $roles;

@@ -12,11 +12,11 @@ class RoleLoad implements FixtureInterface {
   
   public function load(ObjectManager $manager) {
     $roleRepo = $manager->getRepository(Role::class);
-    $role = $roleRepo->findByRole('USER_ROLE');
+    $role = $roleRepo->findByRole('ROLE_USER');
     if(!$role){
       $role = new Role();
-      $role->setName("USER ROLE");
-      $role->setRole("USER_ROLE");
+      $role->setName("ROLE USER");
+      $role->setRole("ROLE_USER");
       $manager->persist($role);
       $manager->flush();
     }

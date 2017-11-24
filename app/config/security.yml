@@ -27,6 +27,8 @@ security:
                 check_path: /login
             logout:
                 path: /logout
+    access_control:
+        - { path: ^/user, roles: ROLE_USER }
 
             # activate different ways to authenticate
 

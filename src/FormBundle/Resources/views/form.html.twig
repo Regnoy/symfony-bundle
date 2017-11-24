@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+  {{ form_start(form) }}
+
+  <div class="form-row-wrap">
+    <div class="form-row">
+      <div class="label">{{ form_label(form.task) }}</div>
+      <div class="input">{{ form_widget(form.task) }}</div>
+      <div class="errors">{{ form_errors(form.task) }}</div>
+    </div>
+    <div class="form-row">
+      <div class="label">{{ form_label(form.description) }}</div>
+      <div class="input">{{ form_widget(form.description) }}</div>
+      <div class="errors">{{ form_errors(form.description) }}</div>
+    </div>
+  </div>
+  {{ form_widget(form) }}
+  {{ form_end(form) }}
+
+{% endblock %}
