@@ -2,7 +2,6 @@
 
 {% block body %}
   {{ form_start(form) }}
-
   <div class="form-row-wrap">
     <div class="form-row">
       <div class="label">{{ form_label(form.task) }}</div>
@@ -15,7 +14,7 @@
       <div class="errors">{{ form_errors(form.description) }}</div>
     </div>
   </div>
+  {# обязательно #}
   {{ form_widget(form) }}
   {{ form_end(form) }}
-
 {% endblock %}

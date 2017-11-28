@@ -9,6 +9,7 @@
 namespace FormBundle\Controller;
 
 
+use FormBundle\Forms\Models\TaskModel;
 use FormBundle\Forms\TaskForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 class PageController extends Controller {
 
   public function exampleAction($example, Request $request){
-    $taskForm = $this->createForm( TaskForm::class );
+    $taskModel = new TaskModel();
+    $taskForm = $this->createForm( TaskForm::class, $taskModel );
     $taskForm->handleRequest($request);
     if($taskForm->isSubmitted()){
-      $data = $taskForm->getData();
-      var_dump($data);
+
+      var_dump($taskModel->getTask());
+      //save
+      return $this->redirectToRoute('form_example');
     }
     return $this->render('FormBundle::form.html.twig', [
       'form' => $taskForm->createView()
