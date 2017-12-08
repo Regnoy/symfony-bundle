@@ -16,19 +16,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FormProductForm extends AbstractType {
+class FormProductType extends AbstractType {
 
   public function buildForm(FormBuilderInterface $builder, array $options) {
     $builder->add('title');
     $builder->add('description');
     $builder->add('price');
-    $builder->add('agree', CheckboxType::class, array(
-      'mapped' => false,
-      'required' => false
-    ));
-    $builder->add('submit', SubmitType::class, [
-      'label' => 'Add'
-    ]);
   }
 
   public function configureOptions(OptionsResolver $resolver) {
