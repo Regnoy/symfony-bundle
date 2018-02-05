@@ -81,13 +81,14 @@ class User implements \Serializable ,UserInterface {
   public function serialize()
   {
     return serialize(array(
-      $this->id
+      $this->id,
+      $this->username
     ));
   }
 
   public function unserialize($serialized)
   {
-    list($this->id) = unserialize($serialized);
+    list($this->id, $this->username) = unserialize($serialized);
   }
 
   public function getRoles() {
