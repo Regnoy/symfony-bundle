@@ -21,7 +21,7 @@ class UserLoad implements FixtureInterface {
   public function load(ObjectManager $manager) {
     
     $roleRepo = $manager->getRepository(Role::class);
-    $role = $roleRepo->findOneByRole('USER_ROLE');
+    $role = $roleRepo->findOneByRole('ROLE_USER');
     if(!$role)
       return;
     
@@ -35,7 +35,7 @@ class UserLoad implements FixtureInterface {
     $userAccount = new UserAccount();
     $userAccount->setFirstName('John')->setLastName('Doe');
     $userAccount->setBirthday( new \DateTime() );
-    $userAccount->setGender('m');
+    $userAccount->setRegion ('Afganistan');
     
     $em = Core::em();
     $em->beginTransaction();
